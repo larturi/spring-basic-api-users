@@ -2,6 +2,7 @@ package com.larturi.users.services;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -22,8 +23,13 @@ public class UserService {
 	
 	private List<User> users = new ArrayList<>();
 	
-	public List<User> getUsers() {
-		return users;
+	public List<User> getUsers(String startWith) {
+		if(startWith != null) {
+			return users.stream().filter(u -> u.getUsername().startsWith(startWith))
+					.collect(Collectors.toList());
+		} else {
+			return users;
+		}
 	}
 	
 	public User getUserByUsername(String username) {

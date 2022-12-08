@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.larturi.users.models.User;
@@ -25,8 +26,8 @@ public class UserController {
 	private UserService userService;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> getUsers() {
-		return new ResponseEntity<List<User>>(userService.getUsers(), HttpStatus.OK);
+	public ResponseEntity<List<User>> getUsers(@RequestParam(value="startWith", required = false) String startWith) {
+		return new ResponseEntity<List<User>>(userService.getUsers(startWith), HttpStatus.OK);
 	}
 	
 	@GetMapping(value="/{username}")
