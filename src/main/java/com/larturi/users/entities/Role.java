@@ -54,6 +54,4 @@ public class Role {
 		return Objects.equals(Id, other.Id);
 	}
 	
-	
-	
 }

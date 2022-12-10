@@ -14,36 +14,35 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.larturi.users.entities.User;
-import com.larturi.users.services.UserService;
+import com.larturi.users.entities.Role;
+import com.larturi.users.services.RoleService;
 
 @RestController
-@RequestMapping("/users")
-public class UserController {
+@RequestMapping("/roles")
+public class RoleController {
 	
 	@Autowired
-	private UserService service;
+	private RoleService service;
 	
 	@GetMapping
-	public ResponseEntity<List<User>> getUsers(){
-		return new ResponseEntity<List<User>>(service.getUsers(), HttpStatus.OK);
+	public ResponseEntity<List<Role>> getRoles(){
+		return new ResponseEntity<List<Role>>(service.getRoles(), HttpStatus.OK);
 	}
 	
 	@PostMapping
-	public ResponseEntity<User> createUser(@RequestBody User user) {
-		return new ResponseEntity<User>(service.createUser(user), HttpStatus.CREATED);
+	public ResponseEntity<Role> createRole(@RequestBody Role role) {
+		return new ResponseEntity<Role>(service.createRole(role), HttpStatus.CREATED);
 	}
 	
 	@PutMapping("/{id}")
-	public ResponseEntity<User> updateUser(@PathVariable("id") Integer id, @RequestBody User user) {
-		return new ResponseEntity<User>(service.updateUser(id, user), HttpStatus.OK);
+	public ResponseEntity<Role> updateRole(@PathVariable("id") Integer id, @RequestBody Role role) {
+		return new ResponseEntity<Role>(service.updateRole(id, role), HttpStatus.OK);
 	}
 	
 	@DeleteMapping("/{id}")
-	public ResponseEntity<Void> deleteUser(@PathVariable("id") Integer id) {
-		service.deleteUser(id);
+	public ResponseEntity<Void> deleteRole(@PathVariable("id") Integer id) {
+		service.deleteRole(id);
 		return new ResponseEntity<Void>(HttpStatus.NO_CONTENT);
 	}
-
 
 }

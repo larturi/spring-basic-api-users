@@ -14,35 +14,36 @@ import jakarta.persistence.Table;
 @Entity
 @Table(name="user")
 public class User {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name= "id")
-	private Integer id;
+	@Column(name="id")
+	private Integer Id;
 	
-	@Column(name= "username")
-	private String username;
+	@Column(name="email")
+	private String email;
 	
-	@Column(name= "password")
+	@Column(name="password")
 	private String password;
 	
 	@OneToOne
-	@JoinColumn(name="profile_id", referencedColumnName = "id")
-	private Profile profile;
-	
+	@JoinColumn(name="role_id", referencedColumnName="id")
+	private Role role;
+
 	public Integer getId() {
-		return id;
+		return Id;
 	}
 
 	public void setId(Integer id) {
-		this.id = id;
+		Id = id;
 	}
 
-	public String getUsername() {
-		return username;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setUsername(String username) {
-		this.username = username;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getPassword() {
@@ -53,17 +54,17 @@ public class User {
 		this.password = password;
 	}
 
-	public Profile getProfile() {
-		return profile;
+	public Role getRole() {
+		return role;
 	}
 
-	public void setProfile(Profile profile) {
-		this.profile = profile;
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(Id);
 	}
 
 	@Override
@@ -75,8 +76,8 @@ public class User {
 		if (getClass() != obj.getClass())
 			return false;
 		User other = (User) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(Id, other.Id);
 	}
-
-
+	
+	
 }
