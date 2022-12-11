@@ -37,7 +37,7 @@ public class SeederController {
 		roleService.createRole(roleUser);
 		
 		// Users
-		for (Integer i = 0; i <=10; i++) {
+		for (Integer i = 0; i <=100; i++) {
 			User user = new User();
 			user.setId(i);
 			user.setEmail("user" + i + "@correo.com");
