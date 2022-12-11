@@ -31,6 +31,11 @@ public class UserService {
 				   .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User with EMAIL %d not found", email)));
 	}
 	
+	public User getUserByEmailAndPassword(String email, String password) {
+		return repository.findByEmailAndPassword(email, password)
+				   .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "User not found"));
+	}
+	
 	public User createUser(User user) {
 		return repository.save(user);
 	}

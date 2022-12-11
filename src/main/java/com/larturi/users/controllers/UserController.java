@@ -40,6 +40,11 @@ public class UserController {
 		return new ResponseEntity<User>(service.getUserByEmail(email), HttpStatus.OK);
 	}
 	
+	@PostMapping("/login")
+	public ResponseEntity<User> login(@RequestBody  User user){
+		return new ResponseEntity<User>(service.getUserByEmailAndPassword(user.getEmail(), user.getPassword()), HttpStatus.OK);
+	}
+	
 	@PostMapping
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		return new ResponseEntity<User>(service.createUser(user), HttpStatus.CREATED);
