@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.larturi.users.entities.User;
 import com.larturi.users.services.UserService;
 
+
 @RestController
 @RequestMapping("/users")
 public class UserController {
@@ -27,6 +28,16 @@ public class UserController {
 	@GetMapping
 	public ResponseEntity<List<User>> getUsers(){
 		return new ResponseEntity<List<User>>(service.getUsers(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/{id}")
+	public ResponseEntity<User> getUserById(@PathVariable("id") Integer id){
+		return new ResponseEntity<User>(service.getUserById(id), HttpStatus.OK);
+	}
+	
+	@GetMapping("/email/{email}")
+	public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
+		return new ResponseEntity<User>(service.getUserByEmail(email), HttpStatus.OK);
 	}
 	
 	@PostMapping

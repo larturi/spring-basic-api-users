@@ -21,6 +21,16 @@ public class UserService {
 		return repository.findAll();
 	}
 	
+	public User getUserById(Integer id) {
+		return repository.findById(id)
+				   .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User with ID %d not found", id)));
+	}
+	
+	public User getUserByEmail(String email) {
+		return repository.findByEmail(email)
+				   .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, String.format("User with EMAIL %d not found", email)));
+	}
+	
 	public User createUser(User user) {
 		return repository.save(user);
 	}
