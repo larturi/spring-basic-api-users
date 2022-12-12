@@ -1,5 +1,6 @@
 package com.larturi.users.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,10 @@ public class UserService {
 	
 	public Page<User> getUsers(int page, int size) {
 		return repository.findAll(PageRequest.of(page, size));
+	}
+	
+	public List<String> getEmails() {
+		return repository.getEmails();
 	}
 	
 	public User getUserById(Integer id) {

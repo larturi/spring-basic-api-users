@@ -1,5 +1,7 @@
 package com.larturi.users.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -40,6 +42,11 @@ public class UserController {
 	@GetMapping("/email/{email}")
 	public ResponseEntity<User> getUserByEmail(@PathVariable("email") String email){
 		return new ResponseEntity<User>(service.getUserByEmail(email), HttpStatus.OK);
+	}
+	
+	@GetMapping("/emails")
+	public ResponseEntity<List<String>> getEmails(){
+		return new ResponseEntity<List<String>>(service.getEmails(), HttpStatus.OK);
 	}
 	
 	@PostMapping("/login")
